@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambit Agents — See the work disappear</title>
+<meta name="description" content="Tell us what it costs you, then feel the work yourself. A free consultation from Ambit, Atlanta IT consulting since 2008.">
+<style>
+:root{
+  --navy:#1E3F7A;--navy-dk:#0D1B35;--navy-mid:#162E58;
+  --navy-sur:#1A3060;--navy-hl:#1E3870;--navy-card:#152748;
+  --gold:#F4B41A;--gold2:#FFC940;
+  --green:#3FB98A;--cream:#F7F4EC;
+  --red:#FF5F57;
+  --line-d:rgba(244,244,255,.07);--line-d2:rgba(244,244,255,.14);
+  --text-d:#DCE6F4;--muted-d:#6A82A8;--soft-d:#9CB0CC;
+  --maxw:1200px;
+  --hf:'Space Grotesk',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-dk);color:var(--text-d);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.sg{font-family:var(--hf);font-weight:700;letter-spacing:-.04em}
+.label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;animation:gpulse 2.8s ease infinite}
+@keyframes gpulse{0%{box-shadow:0 0 0 0 rgba(63,185,138,.6)}70%{box-shadow:0 0 0 8px rgba(63,185,138,0)}100%{box-shadow:0 0 0 0 rgba(63,185,138,0)}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:15px;padding:14px 26px;cursor:pointer;border:1.5px solid transparent;transition:transform .18s,background .18s,border-color .18s,color .18s;white-space:nowrap}
+.btn-gold{background:var(--gold);color:var(--navy-dk)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost-d{border-color:var(--line-d2);color:var(--soft-d)}
+.btn-ghost-d:hover{border-color:var(--gold);color:var(--gold)}
+.btn:disabled{opacity:.5;cursor:default;transform:none!important}
+.arr{transition:transform .2s;display:inline-block}
+.btn:hover .arr{transform:translateX(5px)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,27,53,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-d)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo-mark{display:flex;align-items:center;gap:10px}
+.logo-svg{height:40px;width:auto;flex-shrink:0}
+.logo-word{font-family:var(--hf);font-weight:700;font-size:21px;letter-spacing:-.03em;color:var(--text-d)}
+.logo-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-left:2px;padding-top:3px}
+.status-pill{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted-d);padding:5px 13px;border:1px solid var(--line-d);border-radius:100px}
+.nav-right{display:flex;align-items:center;gap:16px}
+
+/* HERO */
+.hero{padding:90px 0 56px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(244,180,26,.08) 0%,transparent 65%);pointer-events:none}
+.hero-inner{position:relative;z-index:2}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.04em;color:var(--text-d);margin:18px auto 0;max-width:18ch;padding-bottom:.05em}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:17px;color:var(--soft-d);max-width:48ch;margin:22px auto 0;line-height:1.7}
+
+/* STEP INDICATOR */
+.step-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.step-pill{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-d);padding:6px 14px;border:1px solid var(--line-d2);border-radius:100px;transition:border-color .2s,color .2s}
+.step-pill.active{border-color:var(--gold);color:var(--gold)}
+.step-pill.done{border-color:rgba(63,185,138,.4);color:var(--green)}
+.step-sep{width:18px;height:1px;background:var(--line-d2)}
+
+.section-wrap{padding:0 0 90px}
+.panel{background:var(--navy-card);border:1px solid var(--line-d);border-radius:16px;padding:40px;max-width:760px;margin:0 auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.panel-eyebrow{display:block;margin-bottom:10px}
+.panel h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.03em;line-height:1.15;color:var(--text-d);margin-bottom:10px;padding-bottom:.04em}
+.panel-lead{font-size:15px;color:var(--soft-d);margin-bottom:28px;line-height:1.65}
+
+/* DIAGNOSTIC FORM */
+.diag-row{margin-bottom:20px}
+.diag-row label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-d);margin-bottom:8px}
+.diag-row select,.diag-row input{width:100%;padding:13px 14px;font-size:14.5px;font-family:'Inter',sans-serif;background:rgba(244,244,255,.04);border:1px solid var(--line-d2);border-radius:8px;color:var(--text-d)}
+.diag-row select:focus,.diag-row input:focus{outline:none;border-color:var(--gold)}
+.diag-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.diag-cta{width:100%;margin-top:6px}
+
+/* SYS CARDS */
+.sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.sys-card{background:rgba(244,244,255,.03);border:1px solid var(--line-d);border-radius:10px;padding:18px}
+.sys-card .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-d);margin-bottom:8px;display:block}
+.sys-card .val{font-family:var(--hf);font-weight:700;font-size:18px;color:var(--text-d)}
+
+/* TIMER + STATS BAR */
+.run-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;padding:14px 18px;background:rgba(244,244,255,.03);border:1px solid var(--line-d);border-radius:10px}
+.run-bar-item{text-align:center}
+.run-bar-item .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-d);display:block;margin-bottom:3px}
+.run-bar-item .v{font-family:var(--hf);font-weight:700;font-size:22px;color:var(--text-d)}
+.run-bar-item .v.timer{color:var(--gold)}
+.run-bar-item .v.timer.urgent{color:var(--red)}
+
+/* SPREADSHEET SEARCH */
+.search-row{display:flex;gap:10px;margin-bottom:14px}
+.search-row input{flex:1;padding:11px 14px;font-size:13.5px;font-family:'JetBrains Mono',monospace;background:rgba(244,244,255,.04);border:1px solid var(--line-d2);border-radius:8px;color:var(--text-d)}
+.search-row input::placeholder{color:var(--muted-d)}
+.search-row input:focus{outline:none;border-color:var(--gold)}
+.sheet-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.sheet-box{background:#060C18;border:1px solid var(--line-d2);border-radius:10px;overflow:hidden}
+.sheet-head{background:#0A1020;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-d);border-bottom:1px solid var(--line-d)}
+.sheet-body{max-height:230px;overflow-y:auto}
+.sheet-row{display:grid;grid-template-columns:1fr;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--soft-d);border-bottom:1px solid var(--line-d);cursor:pointer;transition:background .12s}
+.sheet-row:hover{background:rgba(244,180,26,.06)}
+.sheet-row.selected{background:rgba(244,180,26,.12);color:var(--gold)}
+.sheet-row.matched-ok{background:rgba(63,185,138,.08);color:var(--green);cursor:default}
+.sheet-row.matched-bad{background:rgba(255,95,87,.08);color:var(--red);cursor:default}
+.sheet-row.hidden-row{display:none}
+.sheet-row .r-id{color:var(--gold);margin-right:6px}
+.sheet-row.matched-ok .r-id,.sheet-row.matched-bad .r-id{color:inherit}
+
+.match-action{display:flex;gap:10px;margin-bottom:18px}
+.match-action button{flex:1}
+
+.feedback{display:none;align-items:center;gap:10px;padding:13px 16px;border-radius:8px;margin-bottom:18px;font-size:13.5px}
+.feedback.show{display:flex}
+.feedback.ok{background:rgba(63,185,138,.1);color:var(--green);border:1px solid rgba(63,185,138,.25)}
+.feedback.warn{background:rgba(244,180,26,.1);color:var(--gold);border:1px solid rgba(244,180,26,.25)}
+
+.note-box{display:none;align-items:flex-start;gap:12px;padding:18px 20px;border-radius:10px;background:rgba(244,180,26,.08);border:1px solid rgba(244,180,26,.25)}
+.note-box.show{display:flex}
+.note-box p{font-size:13.5px;color:var(--gold);margin:0;line-height:1.65}
+.note-box .ttl{font-weight:700;display:block;margin-bottom:4px;font-family:var(--hf);font-size:16px;color:var(--cream)}
+
+/* TERMINAL */
+.terminal{background:#060C18;border:1px solid var(--line-d2);border-radius:10px;overflow:hidden;font-family:'JetBrains Mono',monospace;margin-bottom:18px;display:none}
+.terminal.show{display:block}
+.t-bar{background:#0A1020;padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-dot.r{background:var(--red)}.t-dot.y{background:#FEBC2E}.t-dot.g{background:#28C840}
+.t-title{font-size:10.5px;letter-spacing:.08em;color:var(--muted-d);margin:0 auto}
+.t-body{padding:18px 20px;min-height:30px;display:flex;flex-direction:column;gap:8px}
+.t-line{font-size:12.5px;color:var(--soft-d);opacity:0;animation:tline .3s ease forwards}
+.t-line .pfx{color:var(--gold);margin-right:8px}
+@keyframes tline{to{opacity:1}}
+
+.run-btn{width:100%;padding:15px;font-size:15px;font-weight:600;border-radius:8px;border:none;background:var(--gold);color:var(--navy-dk);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;transition:background .18s,transform .18s}
+.run-btn:hover:not(:disabled){background:var(--gold2);transform:translateY(-2px)}
+.run-btn:disabled{opacity:.7;cursor:default;transform:none}
+
+.result{display:none}
+.result.show{display:block}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat-card{background:rgba(244,244,255,.03);border:1px solid var(--line-d);border-radius:10px;padding:16px;text-align:center}
+.stat-card .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-d);margin-bottom:6px;display:block}
+.stat-card .num{font-family:var(--hf);font-weight:700;font-size:26px;color:var(--text-d)}
+.stat-card .num.green{color:var(--green)}
+.stat-card .num.gold{color:var(--gold)}
+
+.exceptions{background:rgba(244,244,255,.03);border:1px solid var(--line-d);border-radius:10px;padding:18px 20px;margin-bottom:18px}
+.exceptions .ttl{font-size:13px;font-weight:600;color:var(--text-d);margin-bottom:12px}
+.exc-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-d);font-size:13px;gap:12px}
+.exc-row:last-child{border-bottom:none}
+.exc-row .name{color:var(--soft-d)}
+.exc-row .tag{font-size:11.5px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.exc-row .tag.danger{color:var(--red)}
+.exc-row .tag.warn{color:var(--gold)}
+
+.sent-box{display:flex;align-items:center;gap:12px;padding:15px 18px;border-radius:10px;background:rgba(63,185,138,.08);border:1px solid rgba(63,185,138,.25)}
+.sent-box p{font-size:13.5px;color:var(--green);margin:0;line-height:1.6}
+.dot-static{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* ROI PANEL */
+.roi-panel{display:none}
+.roi-panel.show{display:block}
+.roi-hero{text-align:center;padding:28px 0 24px;border-bottom:1px solid var(--line-d);margin-bottom:24px}
+.roi-hero .lbl{color:var(--muted-d);display:block;margin-bottom:8px}
+.roi-hero .big{font-family:var(--hf);font-weight:700;font-size:clamp(40px,7vw,64px);letter-spacing:-.04em;color:var(--gold);line-height:1;padding-bottom:.04em}
+.roi-hero .sub{font-size:13.5px;color:var(--soft-d);margin-top:8px}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.roi-card{background:rgba(244,244,255,.03);border:1px solid var(--line-d);border-radius:10px;padding:18px}
+.roi-card .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-d);margin-bottom:6px;display:block}
+.roi-card .v{font-family:var(--hf);font-weight:700;font-size:24px;color:var(--text-d)}
+.roi-card .v.green{color:var(--green)}
+
+.cue{text-align:center;margin-top:24px;font-size:13px;color:var(--muted-d)}
+
+/* CONTACT */
+.cta-section{background:var(--navy-mid);padding:90px 0;text-align:center;border-top:1px solid var(--line-d)}
+.cta-section h2{font-size:clamp(32px,5vw,52px);color:var(--cream);letter-spacing:-.04em;line-height:1.05;margin-bottom:16px;padding-bottom:.05em}
+.cta-p{font-size:16.5px;color:var(--soft-d);max-width:46ch;margin:0 auto 36px}
+.contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+
+.consult-form{max-width:480px;margin:0 auto;background:var(--navy-card);border:1px solid var(--line-d);border-radius:14px;padding:32px}
+.consult-form .label{display:block;text-align:left;color:var(--muted-d);margin-bottom:6px}
+.form-row{margin-bottom:16px;text-align:left}
+.form-row input{width:100%;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;background:rgba(244,244,255,.04);border:1px solid var(--line-d2);border-radius:8px;color:var(--text-d)}
+.form-row input::placeholder{color:var(--muted-d)}
+.form-row input:focus{outline:none;border-color:var(--gold)}
+.form-submit{width:100%;margin-top:6px}
+.form-success{display:none;text-align:center;padding:20px 0;color:var(--green);font-size:14.5px}
+.form-success.show{display:block}
+.consult-form.hide-fields .form-fields{display:none}
+
+footer{padding:36px 0;text-align:center;border-top:1px solid var(--line-d);font-size:12.5px;color:var(--muted-d);font-family:'JetBrains Mono',monospace}
+
+@media(max-width:680px){
+  .panel{padding:24px;margin:0 16px}
+  .sys-grid,.stat-grid,.sheet-cols,.diag-two,.roi-grid{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+  .step-sep{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo-mark">
+      <svg class="logo-svg" viewBox="0 0 76 62" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="ag" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F4B41A" stop-opacity="1"/>
+            <stop offset="62%" stop-color="#F4B41A" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#F4B41A" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="af" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F4B41A" stop-opacity=".32"/>
+            <stop offset="58%" stop-color="#F4B41A" stop-opacity=".08"/>
+            <stop offset="100%" stop-color="#F4B41A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M5,50 C18,10 46,3 74,18" fill="none" stroke="url(#ag)" stroke-width="10" stroke-linecap="round"/>
+        <path d="M5,50 C18,10 46,3 74,18 L74,50 Z" fill="url(#af)"/>
+        <circle cx="46" cy="56" r="6.5" fill="#F4B41A"/>
+        <circle cx="46" cy="56" r="12" fill="none" stroke="#F4B41A" stroke-width="1.5" opacity=".38"/>
+        <circle cx="46" cy="56" r="19" fill="none" stroke="#F4B41A" stroke-width="1" opacity=".16"/>
+      </svg>
+      <span class="logo-word">AMBIT</span><span class="logo-sub">Agents</span>
+    </div>
+    <div class="nav-right">
+      <span class="status-pill"><span class="pulse"></span>Demo environment</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="label" style="color:var(--gold);opacity:.8">Ambit Agents</span>
+    <h1 class="sg">The busywork your team does twice, <em>done once</em>.</h1>
+    <p class="hero-sub">Three steps. Tell us what it costs you, feel the work yourself, then watch it disappear.</p>
+  </div>
+</section>
+
+<section class="section-wrap">
+  <div class="wrap">
+
+    <div class="step-row">
+      <span class="step-pill active" id="step-pill-1">01 — Tell us the cost</span>
+      <span class="step-sep"></span>
+      <span class="step-pill" id="step-pill-2">02 — Feel the work</span>
+      <span class="step-sep"></span>
+      <span class="step-pill" id="step-pill-3">03 — Watch it disappear</span>
+    </div>
+
+    <!-- STEP 1: DIAGNOSTIC -->
+    <div class="panel" id="panel-diag">
+      <span class="label panel-eyebrow" style="color:var(--gold);opacity:.8">Step 01</span>
+      <h2 class="sg">What's this actually costing you?</h2>
+      <p class="panel-lead">Two questions. Be honest — the rest of this demo runs the numbers against what you tell us.</p>
+
+      <div class="diag-row">
+        <label>How long does this take, per week?</label>
+        <select id="diag-hours">
+          <option value="2">About 2 hours a week</option>
+          <option value="5" selected>About 5 hours a week</option>
+          <option value="10">About 10 hours a week</option>
+          <option value="20">More than 20 hours a week</option>
+        </select>
+      </div>
+
+      <div class="diag-two">
+        <div class="diag-row">
+          <label>Who usually does it?</label>
+          <select id="diag-rate">
+            <option value="18">Hourly staff (~$18/hr)</option>
+            <option value="28" selected>Office manager (~$28/hr)</option>
+            <option value="45">Owner / operator (~$45/hr)</option>
+            <option value="65">Bookkeeper / accountant (~$65/hr)</option>
+          </select>
+        </div>
+        <div class="diag-row">
+          <label>How often does it happen?</label>
+          <select id="diag-freq">
+            <option value="1">Once a week</option>
+            <option value="2" selected>A few times a week</option>
+            <option value="5">Every day</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-gold diag-cta" id="diag-submit">See what that costs you <span class="arr">→</span></button>
+    </div>
+
+    <!-- STEP 2: MANUAL -->
+    <div class="panel" id="panel-manual" style="display:none">
+      <span class="label panel-eyebrow" style="color:var(--gold);opacity:.8">Step 02</span>
+      <h2 class="sg">Now find the mismatches yourself.</h2>
+      <p class="panel-lead">Two real-looking exports. Search both, find <strong id="target-count">3</strong> orders that don't cleanly match an invoice, and mark each one. Clock's running.</p>
+
+      <div class="sys-grid">
+        <div class="sys-card"><span class="lbl">System A — supplier portal export</span><span class="val">14 orders</span></div>
+        <div class="sys-card"><span class="lbl">System B — billing export</span><span class="val">9 invoices</span></div>
+      </div>
+
+      <div class="run-bar">
+        <div class="run-bar-item"><span class="lbl">Found</span><span class="v" id="manual-found">0 / 3</span></div>
+        <div class="run-bar-item"><span class="lbl">Elapsed</span><span class="v timer" id="manual-timer">0:00</span></div>
+        <div class="run-bar-item"><span class="lbl">Wrong picks</span><span class="v" id="manual-wrong">0</span></div>
+      </div>
+
+      <div class="search-row">
+        <input type="text" id="search-orders" placeholder="Search orders by ID, vendor, or amount...">
+      </div>
+      <div class="sheet-cols">
+        <div class="sheet-box">
+          <div class="sheet-head">Orders — supplier portal</div>
+          <div class="sheet-body" id="orders-body"></div>
+        </div>
+        <div class="sheet-box">
+          <div class="sheet-head">Invoices — billing system</div>
+          <div class="sheet-body" id="invoices-body"></div>
+        </div>
+      </div>
+
+      <div class="match-action">
+        <button class="btn btn-ghost-d" style="flex:1" id="mark-exception">Mark selected order as an exception</button>
+      </div>
+
+      <div class="feedback" id="manual-feedback"></div>
+
+      <div class="note-box" id="manual-done">
+        <div>
+          <span class="ttl" id="manual-done-time">Done in 0:00</span>
+          <p>A real reconciliation run is 30 to 60 rows, several times a week — not 14. Multiply that out and this is hours of someone's week, every week.</p>
+          <button class="btn btn-gold" id="manual-continue" style="margin-top:18px;width:100%">See what an agent does with it <span class="arr">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: AGENT -->
+    <div class="panel" id="panel-agent" style="display:none">
+      <span class="label panel-eyebrow" style="color:var(--gold);opacity:.8">Step 03</span>
+      <h2 class="sg">Same data. Watch the agent run it.</h2>
+      <p class="panel-lead">Same 14 orders, same 9 invoices you just searched through by hand.</p>
+
+      <div class="sys-grid">
+        <div class="sys-card"><span class="lbl">System A — supplier portal</span><span class="val">14 orders pending</span></div>
+        <div class="sys-card"><span class="lbl">System B — billing system</span><span class="val">9 invoices outstanding</span></div>
+      </div>
+
+      <button class="run-btn" id="run-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l16 9-16 9V3z"/></svg>
+        <span id="run-label">Run the agent</span>
+      </button>
+
+      <div class="terminal" id="terminal">
+        <div class="t-bar"><span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span><span class="t-title">ambit-agent — reconcile.py</span></div>
+        <div class="t-body" id="terminal-body"></div>
+      </div>
+
+      <div class="result" id="result">
+        <div class="stat-grid">
+          <div class="stat-card"><span class="lbl">Matched</span><span class="num">11</span></div>
+          <div class="stat-card"><span class="lbl">Exceptions</span><span class="num gold">3</span></div>
+          <div class="stat-card"><span class="lbl">Time taken</span><span class="num green">6 sec</span></div>
+        </div>
+
+        <div class="exceptions">
+          <div class="ttl">Exceptions flagged for review</div>
+          <div class="exc-row"><span class="name">Order #4471 — Diaz Catering</span><span class="tag danger">No matching invoice</span></div>
+          <div class="exc-row"><span class="name">Order #4488 — Reyes Supply</span><span class="tag warn">Amount mismatch, $212 vs $240</span></div>
+          <div class="exc-row"><span class="name">Order #4502 — Nguyen Bros</span><span class="tag warn">Dated Jun 9, invoice dated Jun 22</span></div>
+        </div>
+
+        <div class="sent-box">
+          <span class="dot-static"></span>
+          <p>Draft summary emailed to the owner. Nothing sends or updates anywhere until you approve it.</p>
+        </div>
+      </div>
+
+      <div class="roi-panel" id="roi-panel">
+        <div class="roi-hero">
+          <span class="label" id="roi-headline-lbl">Based on what you told us</span>
+          <span class="big" id="roi-annual">$0</span>
+          <span class="sub">a year currently spent on this one task</span>
+        </div>
+        <div class="roi-grid">
+          <div class="roi-card"><span class="lbl">You, by hand</span><span class="v" id="roi-manual-time">—</span></div>
+          <div class="roi-card"><span class="lbl">The agent</span><span class="v green">6 seconds</span></div>
+          <div class="roi-card"><span class="lbl">Hours back per year</span><span class="v" id="roi-hours-back">—</span></div>
+          <div class="roi-card"><span class="lbl">What this typically runs</span><span class="v" id="roi-est-price">—</span></div>
+        </div>
+        <button class="btn btn-gold" style="width:100%" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">See this built for your numbers <span class="arr">→</span></button>
+      </div>
+    </div>
+
+    <p class="cue">This is a generic example. In a real consultation, we rebuild this exact walkthrough around your own two systems.</p>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <span class="label" style="color:rgba(244,180,26,.65)">Let's talk</span>
+    <h2 class="sg">See it built for your business.</h2>
+    <p class="cta-p">Free on-site consultation. No forms, no sales funnel — we look at what's eating your week and tell you straight if an agent can fix it.</p>
+    <div class="contact-actions">
+      <a href="tel:+14043801022" class="btn btn-gold">(404) 380-1022 <span class="arr">→</span></a>
+      <a href="mailto:info@ambitllc.com" class="btn btn-ghost-d">info@ambitllc.com</a>
+    </div>
+
+    <form class="consult-form" id="consult-form">
+      <div class="form-fields">
+        <div class="form-row">
+          <span class="label">Name</span>
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-row">
+          <span class="label">Business</span>
+          <input type="text" name="business" placeholder="Business name" required>
+        </div>
+        <div class="form-row">
+          <span class="label">Phone or email</span>
+          <input type="text" name="contact" placeholder="Best way to reach you" required>
+        </div>
+        <button type="submit" class="btn btn-gold form-submit">Request free consultation <span class="arr">→</span></button>
+      </div>
+      <div class="form-success" id="form-success">Got it — we'll reach out within a day to set up your free consultation.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> Ambit Consulting, LLC — Atlanta, Georgia</span>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- STEP NAV ---------- */
+const pill1 = document.getElementById('step-pill-1');
+const pill2 = document.getElementById('step-pill-2');
+const pill3 = document.getElementById('step-pill-3');
+const panelDiag = document.getElementById('panel-diag');
+const panelManual = document.getElementById('panel-manual');
+const panelAgent = document.getElementById('panel-agent');
+
+function goToStep(n){
+  panelDiag.style.display = n === 1 ? 'block' : 'none';
+  panelManual.style.display = n === 2 ? 'block' : 'none';
+  panelAgent.style.display = n === 3 ? 'block' : 'none';
+  [pill1,pill2,pill3].forEach((p,i)=>{
+    p.classList.remove('active','done');
+    if(i+1 < n) p.classList.add('done');
+    if(i+1 === n) p.classList.add('active');
+  });
+}
+
+/* ---------- DIAGNOSTIC ---------- */
+let userHoursPerWeek = 5, userRate = 28, userFreq = 2;
+
+document.getElementById('diag-submit').addEventListener('click', () => {
+  userHoursPerWeek = parseFloat(document.getElementById('diag-hours').value);
+  userRate = parseFloat(document.getElementById('diag-rate').value);
+  userFreq = parseFloat(document.getElementById('diag-freq').value);
+  goToStep(2);
+  initManualSheet();
+});
+
+/* ---------- STEP 2: SPREADSHEET SEARCH ---------- */
+const ordersData = [
+  {id:'#4452', vendor:'Diaz Catering', amount:340, date:'Jun 12', status:'clean'},
+  {id:'#4460', vendor:'Patel Foods', amount:512, date:'Jun 14', status:'clean'},
+  {id:'#4463', vendor:'Nguyen Bros', amount:230, date:'Jun 15', status:'clean'},
+  {id:'#4467', vendor:'Reyes Supply', amount:128, date:'Jun 15', status:'clean'},
+  {id:'#4471', vendor:'Diaz Catering', amount:115, date:'Jun 16', status:'exception'},
+  {id:'#4474', vendor:'Patel Foods', amount:90, date:'Jun 17', status:'clean'},
+  {id:'#4480', vendor:'Nguyen Bros', amount:340, date:'Jun 18', status:'clean'},
+  {id:'#4483', vendor:'Diaz Catering', amount:212, date:'Jun 18', status:'clean'},
+  {id:'#4488', vendor:'Reyes Supply', amount:212, date:'Jun 19', status:'exception'},
+  {id:'#4491', vendor:'Patel Foods', amount:178, date:'Jun 19', status:'clean'},
+  {id:'#4495', vendor:'Reyes Supply', amount:95, date:'Jun 20', status:'clean'},
+  {id:'#4498', vendor:'Diaz Catering', amount:260, date:'Jun 21', status:'clean'},
+  {id:'#4502', vendor:'Nguyen Bros', amount:175, date:'Jun 9', status:'exception'},
+  {id:'#4505', vendor:'Patel Foods', amount:330, date:'Jun 22', status:'clean'}
+];
+const invoicesData = [
+  {id:'INV-1188', vendor:'Diaz Catering', amount:340, date:'Jun 12'},
+  {id:'INV-1192', vendor:'Patel Foods', amount:512, date:'Jun 14'},
+  {id:'INV-1193', vendor:'Nguyen Bros', amount:230, date:'Jun 15'},
+  {id:'INV-1196', vendor:'Reyes Supply', amount:128, date:'Jun 15'},
+  {id:'INV-1199', vendor:'Patel Foods', amount:90, date:'Jun 17'},
+  {id:'INV-1201', vendor:'Nguyen Bros', amount:340, date:'Jun 18'},
+  {id:'INV-1203', vendor:'Diaz Catering', amount:212, date:'Jun 18'},
+  {id:'INV-1208', vendor:'Patel Foods', amount:178, date:'Jun 19'},
+  {id:'INV-1210', vendor:'Reyes Supply', amount:95, date:'Jun 20'},
+  {id:'INV-1213', vendor:'Diaz Catering', amount:260, date:'Jun 21'},
+  {id:'INV-1190', vendor:'Reyes Supply', amount:240, date:'Jun 19'},
+  {id:'INV-1222', vendor:'Nguyen Bros', amount:175, date:'Jun 22'},
+  {id:'INV-1225', vendor:'Patel Foods', amount:330, date:'Jun 22'}
+];
+
+let selectedOrderId = null;
+let foundExceptions = new Set();
+let wrongPicks = 0;
+let manualTimerInterval = null;
+let manualStartTime = null;
+
+function renderSheet(containerId, data, idKey){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  data.forEach(row => {
+    const div = document.createElement('div');
+    div.className = 'sheet-row';
+    div.dataset.search = (row.id + ' ' + row.vendor + ' ' + row.amount + ' ' + row.date).toLowerCase();
+    div.innerHTML = '<span class="r-id">' + row.id + '</span>' + row.vendor + ' — $' + row.amount + ' — ' + row.date;
+    if(idKey === 'order'){
+      div.addEventListener('click', () => {
+        if(div.classList.contains('matched-ok') || div.classList.contains('matched-bad')) return;
+        document.querySelectorAll('#orders-body .sheet-row').forEach(r => r.classList.remove('selected'));
+        div.classList.add('selected');
+        selectedOrderId = row.id;
+      });
+    }
+    div.dataset.id = row.id;
+    el.appendChild(div);
+  });
+}
+
+function initManualSheet(){
+  selectedOrderId = null;
+  foundExceptions = new Set();
+  wrongPicks = 0;
+  document.getElementById('manual-found').textContent = '0 / 3';
+  document.getElementById('manual-wrong').textContent = '0';
+  document.getElementById('manual-feedback').classList.remove('show');
+  document.getElementById('manual-done').classList.remove('show');
+  document.querySelector('.search-row').style.display = 'flex';
+  document.querySelector('.sheet-cols').style.display = 'grid';
+  document.querySelector('.match-action').style.display = 'flex';
+  renderSheet('orders-body', ordersData, 'order');
+  renderSheet('invoices-body', invoicesData, 'invoice');
+
+  manualStartTime = Date.now();
+  clearInterval(manualTimerInterval);
+  manualTimerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - manualStartTime) / 1000);
+    const m = Math.floor(elapsed / 60), s = elapsed % 60;
+    const timerEl = document.getElementById('manual-timer');
+    timerEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    timerEl.classList.toggle('urgent', elapsed > 60);
+  }, 1000);
+}
+
+document.getElementById('search-orders').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('#orders-body .sheet-row').forEach(row => {
+    row.classList.toggle('hidden-row', q.length > 0 && !row.dataset.search.includes(q));
+  });
+});
+
+document.getElementById('mark-exception').addEventListener('click', () => {
+  const feedbackEl = document.getElementById('manual-feedback');
+  if(!selectedOrderId){
+    feedbackEl.classList.add('show','warn');
+    feedbackEl.classList.remove('ok');
+    feedbackEl.textContent = 'Select an order from the left column first.';
+    return;
+  }
+  const order = ordersData.find(o => o.id === selectedOrderId);
+  const row = document.querySelector('#orders-body .sheet-row[data-id="' + selectedOrderId + '"]');
+
+  if(order.status === 'exception' && !foundExceptions.has(order.id)){
+    foundExceptions.add(order.id);
+    row.classList.remove('selected');
+    row.classList.add('matched-ok');
+    document.getElementById('manual-found').textContent = foundExceptions.size + ' / 3';
+    feedbackEl.classList.add('show','ok');
+    feedbackEl.classList.remove('warn');
+    feedbackEl.textContent = 'Correct — that one does not cleanly reconcile.';
+  } else if(order.status === 'clean'){
+    wrongPicks++;
+    document.getElementById('manual-wrong').textContent = wrongPicks;
+    row.classList.remove('selected');
+    row.classList.add('matched-bad');
+    feedbackEl.classList.add('show','warn');
+    feedbackEl.classList.remove('ok');
+    feedbackEl.textContent = 'That one actually matches fine — false alarm, costs you time either way.';
+  } else {
+    feedbackEl.classList.add('show','warn');
+    feedbackEl.classList.remove('ok');
+    feedbackEl.textContent = 'Already flagged that one.';
+  }
+  selectedOrderId = null;
+
+  if(foundExceptions.size >= 3){
+    clearInterval(manualTimerInterval);
+    const elapsed = Math.floor((Date.now() - manualStartTime) / 1000);
+    const m = Math.floor(elapsed / 60), s = elapsed % 60;
+    const timeStr = m + ':' + (s < 10 ? '0' : '') + s;
+    document.getElementById('manual-done-time').textContent = 'Done in ' + timeStr + (wrongPicks ? ', ' + wrongPicks + ' false alarm' + (wrongPicks > 1 ? 's' : '') : '');
+    document.getElementById('manual-done').classList.add('show');
+    document.querySelector('.search-row').style.display = 'none';
+    document.querySelector('.sheet-cols').style.display = 'none';
+    document.querySelector('.match-action').style.display = 'none';
+    feedbackEl.classList.remove('show');
+    window.lastManualSeconds = elapsed;
+  }
+});
+
+document.getElementById('manual-continue').addEventListener('click', () => {
+  goToStep(3);
+});
+
+/* ---------- STEP 3: AGENT RUN ---------- */
+const runBtn = document.getElementById('run-btn');
+const runLabel = document.getElementById('run-label');
+const terminal = document.getElementById('terminal');
+const terminalBody = document.getElementById('terminal-body');
+const result = document.getElementById('result');
+const roiPanel = document.getElementById('roi-panel');
+
+const logLines = [
+  'Connecting to supplier portal...',
+  'Pulled 14 orders',
+  'Connecting to billing system...',
+  'Pulled 9 invoices',
+  'Cross-referencing by order number, amount, and date...',
+  'Found 11 clean matches',
+  'Flagging 3 exceptions for review...'
+];
+
+runBtn.addEventListener('click', () => {
+  runBtn.disabled = true;
+  runLabel.textContent = 'Running...';
+  result.classList.remove('show');
+  roiPanel.classList.remove('show');
+  terminal.classList.add('show');
+  terminalBody.innerHTML = '';
+  let i = 0;
+  const interval = setInterval(() => {
+    if(i < logLines.length){
+      const line = document.createElement('div');
+      line.className = 't-line';
+      line.innerHTML = '<span class="pfx">&gt;</span>' + logLines[i];
+      terminalBody.appendChild(line);
+      i++;
+    } else {
+      clearInterval(interval);
+      setTimeout(() => {
+        terminal.classList.remove('show');
+        runBtn.disabled = false;
+        runLabel.textContent = 'Run again';
+        result.classList.add('show');
+        renderROI();
+        roiPanel.classList.add('show');
+      }, 350);
+    }
+  }, 300);
+});
+
+function renderROI(){
+  const annualCost = Math.round(userHoursPerWeek * userRate * 52);
+  const fmt = n => '$' + n.toLocaleString();
+  document.getElementById('roi-annual').textContent = fmt(annualCost);
+
+  const manualSeconds = window.lastManualSeconds || 90;
+  const m = Math.floor(manualSeconds / 60), s = manualSeconds % 60;
+  document.getElementById('roi-manual-time').textContent = m + ':' + (s < 10 ? '0' : '') + s + ' for 14 rows';
+
+  const hoursBack = Math.round(userHoursPerWeek * 52 * 0.85);
+  document.getElementById('roi-hours-back').textContent = hoursBack.toLocaleString() + ' hrs/yr';
+
+  const estLow = Math.max(90, Math.round(annualCost * 0.1 / 12 / 10) * 10);
+  const estHigh = estLow + 60;
+  document.getElementById('roi-est-price').textContent = '$' + estLow + '–' + estHigh + '/mo';
+}
+
+/* ---------- CONSULT FORM ---------- */
+document.getElementById('consult-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  this.classList.add('hide-fields');
+  document.getElementById('form-success').classList.add('show');
+});
+</script>
+</body>
+</html>
